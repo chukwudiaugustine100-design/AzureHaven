@@ -44,11 +44,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -163,7 +158,6 @@
             overflow: hidden;
         }
 
-        /* The Video Background */
         .hero-video {
             position: absolute;
             top: 50%;
@@ -177,7 +171,6 @@
             z-index: -2;
         }
 
-        /* The Dark Overlay for readability */
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -237,7 +230,7 @@
         .section-header h2 { font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 10px; }
         .section-header p { color: var(--text-muted); }
 
-        /* --- BENTO BOX AMENITIES --- */
+        /* --- BENTO BOX AMENITIES (MANUAL IMAGE UPLOAD) --- */
         .amenities-section {
             padding: 80px 5%;
             max-width: 1200px;
@@ -262,6 +255,32 @@
             min-height: 200px;
             position: relative;
             overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Dark Gradient Overlay for each Bento Item */
+        .bento-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 100%);
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .bento-item:hover::before {
+            opacity: 0.8;
+        }
+
+        /* Ensure text stays above the overlay */
+        .bento-item h3, .bento-item p, .bento-icon {
+            position: relative;
+            z-index: 2;
         }
 
         .bento-item:nth-child(1) { transition-delay: 0.1s; }
@@ -757,14 +776,10 @@
 
     <!-- 1. HOME / HERO SECTION WITH VIDEO BACKGROUND -->
     <header class="hero" id="home">
-        <!-- The Video Element -->
-        <video class="hero-video" autoplay muted loop playsinline poster="VID-20261006-WA0009.mp4auto=format&fit=crop">
-            <!-- You can replace this URL with your own .mp4 video link -->
-            <source src="VID-20261006-WA0009.mp4" type="video/mp4">
+        <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-luxurious-hotel-room-with-a-view-of-the-city-42922-large.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        
-        <!-- The Dark Overlay -->
         <div class="hero-overlay"></div>
 
         <h1>Redefining Hospitality in Imo State.</h1>
@@ -772,7 +787,7 @@
         <a href="#rooms" class="hero-btn" id="exploreBtn">Explore Rooms</a>
     </header>
 
-    <!-- 2. AMENITIES SECTION -->
+    <!-- 2. AMENITIES SECTION WITH MANUAL IMAGE PLACEHOLDERS -->
     <section id="amenities" class="amenities-section reveal">
         <div class="section-header">
             <h2>World Class Comfort</h2>
@@ -780,32 +795,367 @@
         </div>
         
         <div class="bento-grid">
-            <div class="bento-item bento-large reveal" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop') center/cover;">
+            
+            <!-- ========================================== -->
+            <!-- 1. LARGE BOX: 24 HOURS POWER SUPPLY        -->
+            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
+            <!-- ========================================== -->
+            <div class="bento-item bento-large reveal" style="background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop');">
                 <div class="bento-icon">⚡</div>
                 <h3>24 Hours Power Supply</h3>
                 <p>Uninterrupted comfort, day and night.</p>
             </div>
             
-            <div class="bento-item bento-tall reveal" style="background-image: url('IMG8.png');">
+            <!-- ========================================== -->
+            <!-- 2. TALL BOX: SMART TV & ENTERTAINMENT       -->
+            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
+            <!-- ========================================== -->
+            <div class="bento-item bento-tall reveal" style="background-image: url('https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=2070&auto=format&fit=crop');">
                 <div class="bento-icon">📺</div>
                 <h3>Smart TV & Entertainment</h3>
                 <p>DSTV, Netflix, YouTube & more.</p>
             </div>
 
+            <!-- ========================================== -->
+            <!-- 3. WIDE BOX: FREE HIGH-SPEED WIFI           -->
+            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
+            <!-- ========================================== -->
             <div class="bento-item bento-wide reveal" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop');">
                 <div class="bento-icon">📶</div>
                 <h3>Free High-Speed WiFi</h3>
                 <p>Stay connected throughout the hotel.</p>
             </div>
 
-
+            <!-- ========================================== -->
+            <!-- 4. STANDARD BOX: 24/7 ROOM SERVICE          -->
+            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
+            <!-- ========================================== -->
             <div class="bento-item bento-standard reveal" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop');">
                 <div class="bento-icon">🛎️</div>
                 <h3>24/7 Room Service</h3>
                 <p>Attentive service at your fingertips.</p>
             </div>
+
+            <!-- ========================================== -->
+            <!-- 5. STANDARD BOX: 24/7 SECURITY              -->
+            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
+            <!-- ========================================== -->
+            <div class="bento-item bento-standard reveal" style="background-image: url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?q=80&w=2070&auto=format&fit=crop');">
+                <div class="bento-icon">🛡️</div>
+                <h3>24/7 Security</h3>
+                <p>Your safety is our priority.</p>
+            </div>
             
-            <!DOCTYPE html>
+            <!-- ========================================== -->
+            <!-- 6. STANDARD BOX: AMPLE PARKING              -->
+            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
+            <!-- ========================================== -->
+            <div class="bento-item bento-standard reveal" style="background-image: url('https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=2070&auto=format&fit=crop');">
+                <div class="bento-icon">🚗</div>
+                <h3>Ample Parking</h3>
+                <p>Secure space for all guests.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ROOM RATES SECTION -->
+    <section id="rooms" class="rooms-section">
+        <div class="section-header reveal">
+            <h2>Exclusive Room Rates & Halls</h2>
+            <p>Choose the perfect space for your stay or event.</p>
+        </div>
+
+        <div class="rooms-grid">
+            
+            <!-- 1. Regular Room -->
+            <div class="room-card reveal" data-room="Regular Room">
+                <div class="room-img">
+                    <img src="https://i.ibb.co/3mFk5b8/regular-room.jpg" alt="Regular Room"> 
+                    <div class="room-badge">Popular</div>
+                </div>
+                <div class="room-info">
+                    <h3>Regular Room</h3>
+                    <span class="price">₦40,000 <span>/ night</span></span>
+                    <button class="btn-whatsapp book-btn">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Book Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2. Standard Room -->
+            <div class="room-card reveal" data-room="Standard Room">
+                <div class="room-img">
+                    <img src="https://i.ibb.co/L5nQyqW/standard-room.jpg" alt="Standard Room">
+                </div>
+                <div class="room-info">
+                    <h3>Standard Room</h3>
+                    <span class="price">₦45,000 <span>/ night</span></span>
+                    <button class="btn-whatsapp book-btn">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Book Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. Deluxe Room -->
+            <div class="room-card reveal" data-room="Deluxe Room">
+                <div class="room-img">
+                    <img src="https://i.ibb.co/1GjXq2R/deluxe-room.jpg" alt="Deluxe Room">
+                </div>
+                <div class="room-info">
+                    <h3>Deluxe Room</h3>
+                    <span class="price">₦50,000 <span>/ night</span></span>
+                    <button class="btn-whatsapp book-btn">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Book Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4. Premium Room -->
+            <div class="room-card reveal" data-room="Premium Room">
+                <div class="room-img">
+                    <div class="placeholder-img">Add Premium Room Image</div>
+                </div>
+                <div class="room-info">
+                    <h3>Premium Room</h3>
+                    <span class="price">₦55,000 <span>/ night</span></span>
+                    <button class="btn-whatsapp book-btn">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Book Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- 5. Semi Suite -->
+            <div class="room-card reveal" data-room="Semi Suite">
+                <div class="room-img">
+                    <div class="placeholder-img">Add Semi Suite Image</div>
+                </div>
+                <div class="room-info">
+                    <h3>Semi Suite</h3>
+                    <span class="price">₦60,000 <span>/ night</span></span>
+                    <button class="btn-whatsapp book-btn">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Book Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- 6. Exquisite Suite -->
+            <div class="room-card reveal" data-room="Exquisite Suite">
+                <div class="room-img">
+                    <div class="placeholder-img">Add Exquisite Suite Image</div>
+                    <div class="room-badge" style="background: var(--accent-gold); color: #000;">Luxury</div>
+                </div>
+                <div class="room-info">
+                    <h3>Exquisite Suite</h3>
+                    <span class="price">₦100,000 <span>/ night</span></span>
+                    <button class="btn-whatsapp book-btn">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Book Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- 7. Small Hall Usage -->
+            <div class="room-card reveal" data-room="Small Hall Usage">
+                <div class="room-img">
+                    <div class="placeholder-img">Add Small Hall Image</div>
+                </div>
+                <div class="room-info">
+                    <h3>Small Hall Usage</h3>
+                    <span class="price">₦350,000 <span>/ event</span></span>
+                    <button class="btn-whatsapp book-btn">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Book Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- 8. Big Hall Usage -->
+            <div class="room-card reveal" data-room="Big Hall Usage">
+                <div class="room-img">
+                    <div class="placeholder-img">Add Big Hall Image</div>
+                </div>
+                <div class="room-info">
+                    <h3>Big Hall Usage</h3>
+                    <span class="price">₦600,000 <span>/ event</span></span>
+                    <button class="btn-whatsapp book-btn">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Book Now
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. ABOUT SECTION -->
+    <section id="about" class="about-section">
+        <div class="about-image-wrapper reveal">
+            <img src="https://i.ibb.co/1GjXq2R/deluxe-room.jpg" alt="Passionate Empire Hotel Interior">
+            <div class="about-badge">
+                <h4>5+</h4>
+                <p>Years of Excellence</p>
+            </div>
+        </div>
+
+        <div class="about-text reveal">
+            <h2>Welcome to <br><span>Passionate Empire</span></h2>
+            <p>Nestled in the heart of Imo State, Passionate Empire Int'l Hotel & Suite is more than just a place to stay—it is a destination for comfort, luxury, and unforgettable experiences.</p>
+            <p>Located at No. 1 Malaysia Market, Mbakwe Road, Umungwa, Obowo LGA, we pride ourselves on offering world-class hospitality tailored to both business travelers and leisure guests. From our elegantly designed rooms to our state-of-the-art event halls, every detail is crafted to ensure your utmost satisfaction.</p>
+            
+            <div class="about-features">
+                <div class="about-feature-item">
+                    <div class="icon">📍</div>
+                    <div>
+                        <h5>Prime Location</h5>
+                        <p>Easy access in Imo State</p>
+                    </div>
+                </div>
+                <div class="about-feature-item">
+                    <div class="icon">⭐</div>
+                    <div>
+                        <h5>Premium Comfort</h5>
+                        <p>Luxury you can afford</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONTACT / FOOTER SECTION -->
+    <footer id="contact">
+        <div class="footer-content">
+            
+            <!-- Brand Column -->
+            <div class="footer-brand reveal">
+                <h2><div class="logo-dot"></div> Passionate Empire</h2>
+                <p>Experience true hospitality and world-class comfort in the heart of Imo State. Your perfect stay awaits.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <a href="#" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links Column -->
+            <div class="footer-links reveal">
+                <h4>Explore</h4>
+                <a href="#home">Home</a>
+                <a href="#amenities">Amenities</a>
+                <a href="#rooms">Rooms & Suites</a>
+                <a href="#about">About Us</a>
+            </div>
+
+            <!-- Contact Column -->
+            <div class="footer-links reveal">
+                <h4>Contact Us</h4>
+                <a href="tel:08032069345">📞 0803 206 9345</a>
+                <a href="mailto:passionateempirehotel@gmail.com">✉️ passionateempirehotel@gmail.com</a>
+                <a href="#">📍 Mbakwe Road, Umungwa, Imo State</a>
+                
+                <a href="https://wa.me/2348032069345" target="_blank" class="footer-cta-btn">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Chat with us
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Passionate Empire Int'l Hotel & Suite. All Rights Reserved.</p>
+            <p>Designed with <span class="heart">♥</span> for luxury & comfort.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR MOBILE MENU, WHATSAPP BUTTONS & SCROLL ANIMATIONS -->
+    <script>
+        // --- Mobile Menu Logic ---
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu and scroll smoothly when a link is clicked
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        navMenu.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        
+                        setTimeout(() => {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }, 300);
+                    }
+                }
+            });
+        });
+
+        // --- EXPLORE ROOMS BUTTON LOGIC ---
+        const exploreBtn = document.getElementById('exploreBtn');
+        if (exploreBtn) {
+            exploreBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetElement = document.getElementById('rooms');
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+
+        // --- SCROLL REVEAL ANIMATION LOGIC ---
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+
+            revealElements.forEach((element) => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // --- WhatsApp Booking Logic ---
+        const hotelWhatsAppNumber = "2348032069345"; 
+
+        document.querySelectorAll('.book-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.room-card');
+                const roomName = card.getAttribute('data-room');
+                const message = `Hello Passionate Empire, I would like to book the *${roomName}*. Please provide more details.`;
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/${hotelWhatsAppNumber}?text=${encodedMessage}`;
+                window.open(whatsappUrl, '_blank');
+            });
+        });
+    </script>
+</body>
+</html> <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1584,7 +1934,7 @@
     <!-- 1. HOME / HERO SECTION WITH VIDEO BACKGROUND -->
     <header class="hero" id="home">
         <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-luxurious-hotel-room-with-a-view-of-the-city-42922-large.mp4" type="video/mp4">
+            <source src="VID-20260016-WA0001.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
@@ -1653,6 +2003,10 @@
                 <p>Your safety is our priority.</p>
             </div>
             
+            <!-- ========================================== -->
+            <!-- 6. STANDARD BOX: AMPLE PARKING              -->
+            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
+            <!-- ========================================== -->
             <div class="bento-item bento-standard reveal" style="background-image: url('https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=2070&auto=format&fit=crop');">
                 <div class="bento-icon">🚗</div>
                 <h3>Ample Parking</h3>
@@ -1958,4 +2312,4 @@
         });
     </script>
 </body>
-</html>
+                            </html>
