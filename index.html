@@ -230,7 +230,7 @@
         .section-header h2 { font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 10px; }
         .section-header p { color: var(--text-muted); }
 
-        /* --- BENTO BOX AMENITIES (MANUAL IMAGE UPLOAD) --- */
+        /* --- BENTO BOX AMENITIES --- */
         .amenities-section {
             padding: 80px 5%;
             max-width: 1200px;
@@ -260,7 +260,6 @@
             background-repeat: no-repeat;
         }
 
-        /* Dark Gradient Overlay for each Bento Item */
         .bento-item::before {
             content: '';
             position: absolute;
@@ -273,11 +272,8 @@
             transition: opacity 0.3s ease;
         }
 
-        .bento-item:hover::before {
-            opacity: 0.8;
-        }
+        .bento-item:hover::before { opacity: 0.8; }
 
-        /* Ensure text stays above the overlay */
         .bento-item h3, .bento-item p, .bento-icon {
             position: relative;
             z-index: 2;
@@ -301,7 +297,7 @@
         .bento-icon { font-size: 32px; margin-bottom: auto; transition: transform 0.3s ease; }
         .bento-item:hover .bento-icon { transform: scale(1.2) rotate(5deg); }
 
-        /* --- ROOM RATES CARDS --- */
+        /* --- ROOM RATES CARDS (FIXED IMAGE OVERLAP) --- */
         .rooms-section {
             padding: 80px 5%;
             background-color: #141414;
@@ -318,7 +314,7 @@
         .room-card {
             background-color: var(--card-bg);
             border-radius: var(--radius-lg);
-            overflow: hidden;
+            overflow: hidden; /* Prevents images from spilling out */
             position: relative;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
@@ -340,13 +336,23 @@
         }
 
         .room-img {
-            height: 240px;
+            height: 240px; /* Fixed height for all images */
             width: 100%;
             position: relative;
             overflow: hidden;
             background-color: #2a2a2a;
         }
-        .room-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); }
+
+        /* THIS IS THE FIX: Ensures the image fits perfectly inside the 240px box */
+        .room-img img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Prevents stretching and overlapping */
+            object-position: center; /* Centers the image */
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); 
+        }
+
         .room-card:hover .room-img img { transform: scale(1.15); }
 
         .placeholder-img {
@@ -467,9 +473,7 @@
             transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        .about-image-wrapper:hover img {
-            transform: scale(1.08);
-        }
+        .about-image-wrapper:hover img { transform: scale(1.08); }
 
         .about-image-wrapper::after {
             content: '';
@@ -776,8 +780,9 @@
 
     <!-- 1. HOME / HERO SECTION WITH VIDEO BACKGROUND -->
     <header class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline poster="VID-20261006-WA0009.mp4auto=format&fit=crop">
-            <source src="VID-20261006-WA0009.mp4" type="video/mp4">
+        <!-- Remember to update this src with a hosted .mp4 link -->
+        <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop">
+            <source src="VID-20260016-WA0001.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
@@ -787,7 +792,7 @@
         <a href="#rooms" class="hero-btn" id="exploreBtn">Explore Rooms</a>
     </header>
 
-    <!-- 2. AMENITIES SECTION WITH MANUAL IMAGE PLACEHOLDERS -->
+    <!-- 2. AMENITIES SECTION -->
     <section id="amenities" class="amenities-section reveal">
         <div class="section-header">
             <h2>World Class Comfort</h2>
@@ -796,60 +801,36 @@
         
         <div class="bento-grid">
             
-            <!-- ========================================== -->
-            <!-- 1. LARGE BOX: 24 HOURS POWER SUPPLY        -->
-            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
-            <!-- ========================================== -->
             <div class="bento-item bento-large reveal" style="background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop');">
                 <div class="bento-icon">⚡</div>
                 <h3>24 Hours Power Supply</h3>
                 <p>Uninterrupted comfort, day and night.</p>
             </div>
             
-            <!-- ========================================== -->
-            <!-- 2. TALL BOX: SMART TV & ENTERTAINMENT       -->
-            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
-            <!-- ========================================== -->
             <div class="bento-item bento-tall reveal" style="background-image: url('IMG8.png');">
                 <div class="bento-icon">📺</div>
                 <h3>Smart TV & Entertainment</h3>
                 <p>DSTV, Netflix, YouTube & more.</p>
             </div>
 
-            <!-- ========================================== -->
-            <!-- 3. WIDE BOX: FREE HIGH-SPEED WIFI           -->
-            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
-            <!-- ========================================== -->
             <div class="bento-item bento-wide reveal" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop');">
                 <div class="bento-icon">📶</div>
                 <h3>Free High-Speed WiFi</h3>
                 <p>Stay connected throughout the hotel.</p>
             </div>
 
-            <!-- ========================================== -->
-            <!-- 4. STANDARD BOX: 24/7 ROOM SERVICE          -->
-            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
-            <!-- ========================================== -->
             <div class="bento-item bento-standard reveal" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop');">
                 <div class="bento-icon">🛎️</div>
                 <h3>24/7 Room Service</h3>
                 <p>Attentive service at your fingertips.</p>
             </div>
 
-            <!-- ========================================== -->
-            <!-- 5. STANDARD BOX: 24/7 SECURITY              -->
-            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
-            <!-- ========================================== -->
             <div class="bento-item bento-standard reveal" style="background-image: url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?q=80&w=2070&auto=format&fit=crop');">
                 <div class="bento-icon">🛡️</div>
                 <h3>24/7 Security</h3>
                 <p>Your safety is our priority.</p>
             </div>
             
-            <!-- ========================================== -->
-            <!-- 6. STANDARD BOX: AMPLE PARKING              -->
-            <!-- REPLACE THE URL BELOW WITH YOUR OWN IMAGE  -->
-            <!-- ========================================== -->
             <div class="bento-item bento-standard reveal" style="background-image: url('https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=2070&auto=format&fit=crop');">
                 <div class="bento-icon">🚗</div>
                 <h3>Ample Parking</h3>
@@ -911,12 +892,12 @@
                         Book Now
                     </button>
                 </div>
-            </div><img src="IMG3.png" alt="Premium Room">
+            </div>
 
             <!-- 4. Premium Room -->
             <div class="room-card reveal" data-room="Premium Room">
                 <div class="room-img">
-                    <div class="placeholder-img"><img src="IMG3.png"></div>
+                    <div class="placeholder-img"><img src="IMG4.png" alt="Premium Room"></div>
                 </div>
                 <div class="room-info">
                     <h3>Premium Room</h3>
@@ -931,7 +912,7 @@
             <!-- 5. Semi Suite -->
             <div class="room-card reveal" data-room="Semi Suite">
                 <div class="room-img">
-                    <div class="placeholder-img"><img src="IMG4.png" alt="Semi Suite"></div>
+                    <div class="placeholder-img"><img src="IMG7.png" alt="Semi Suite"></div>
                 </div>
                 <div class="room-info">
                     <h3>Semi Suite</h3>
@@ -946,7 +927,7 @@
             <!-- 6. Exquisite Suite -->
             <div class="room-card reveal" data-room="Exquisite Suite">
                 <div class="room-img">
-                    <div class="placeholder-img"><img src="IMG5.png" alt="Exquisite Suite"></div>
+                    <div class="placeholder-img"><img src="IMG6.png" alt="Exquisite Suite"></div>
                     <div class="room-badge" style="background: var(--accent-gold); color: #000;">Luxury</div>
                 </div>
                 <div class="room-info">
@@ -962,7 +943,7 @@
             <!-- 7. Small Hall Usage -->
             <div class="room-card reveal" data-room="Small Hall Usage">
                 <div class="room-img">
-                    <div class="placeholder-img"><img src="IMG6.png" alt="Small hall Usage"></div>
+                    <div class="placeholder-img"><img src="IMG5.png" alt="Small Hall Usage"></div>
                 </div>
                 <div class="room-info">
                     <h3>Small Hall Usage</h3>
@@ -977,7 +958,7 @@
             <!-- 8. Big Hall Usage -->
             <div class="room-card reveal" data-room="Big Hall Usage">
                 <div class="room-img">
-                    <div class="placeholder-img"><img src="IMG7.png" alt="Big Hall Usage"></div>
+                    <div class="placeholder-img"><img src="IMG4.png" alt="Big Hall Usage"></div>
                 </div>
                 <div class="room-info">
                     <h3>Big Hall Usage</h3>
@@ -1030,7 +1011,6 @@
     <footer id="contact">
         <div class="footer-content">
             
-            <!-- Brand Column -->
             <div class="footer-brand reveal">
                 <h2><div class="logo-dot"></div> Passionate Empire</h2>
                 <p>Experience true hospitality and world-class comfort in the heart of Imo State. Your perfect stay awaits.</p>
@@ -1047,7 +1027,6 @@
                 </div>
             </div>
 
-            <!-- Quick Links Column -->
             <div class="footer-links reveal">
                 <h4>Explore</h4>
                 <a href="#home">Home</a>
@@ -1056,7 +1035,6 @@
                 <a href="#about">About Us</a>
             </div>
 
-            <!-- Contact Column -->
             <div class="footer-links reveal">
                 <h4>Contact Us</h4>
                 <a href="tel:08032069345">📞 0803 206 9345</a>
@@ -1071,7 +1049,6 @@
 
         </div>
 
-        <!-- Bottom Bar -->
         <div class="footer-bottom">
             <p>&copy; 2024 Passionate Empire Int'l Hotel & Suite. All Rights Reserved.</p>
             <p>Designed with <span class="heart">♥</span> for luxury & comfort.</p>
@@ -1080,7 +1057,6 @@
 
     <!-- JAVASCRIPT FOR MOBILE MENU, WHATSAPP BUTTONS & SCROLL ANIMATIONS -->
     <script>
-        // --- Mobile Menu Logic ---
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
 
@@ -1089,7 +1065,6 @@
             menuToggle.classList.toggle('active');
         });
 
-        // Close mobile menu and scroll smoothly when a link is clicked
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
@@ -1110,7 +1085,6 @@
             });
         });
 
-        // --- EXPLORE ROOMS BUTTON LOGIC ---
         const exploreBtn = document.getElementById('exploreBtn');
         if (exploreBtn) {
             exploreBtn.addEventListener('click', (e) => {
@@ -1122,9 +1096,7 @@
             });
         }
 
-        // --- SCROLL REVEAL ANIMATION LOGIC ---
         const revealElements = document.querySelectorAll('.reveal');
-
         const revealOnScroll = () => {
             const windowHeight = window.innerHeight;
             const elementVisible = 100;
@@ -1140,7 +1112,6 @@
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('load', revealOnScroll);
 
-        // --- WhatsApp Booking Logic ---
         const hotelWhatsAppNumber = "2348032069345"; 
 
         document.querySelectorAll('.book-btn').forEach(button => {
@@ -1155,4 +1126,4 @@
         });
     </script>
 </body>
-                            </html>
+                        </html>
